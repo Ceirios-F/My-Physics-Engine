@@ -13,6 +13,7 @@ public class PhysicsEngineScript : MonoBehaviour
     public Vector3 Gravity;
     public Rigidbody rb;
     public float Mass;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -22,53 +23,35 @@ public class PhysicsEngineScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
         Gravity = new Vector3(0, -1, 0);
-        int CurrentShotTypes = 1;
+     
+        Mass = 2.0f;
+        Velocity = new Vector3 (0.0f, 0.0f, 5.0f);
+        Acceleration = new Vector3(0.0f, -1.0f, 0.0f);
+        rb.AddForce(Gravity * Mass);
+        transform.position += Velocity * Time.deltaTime + (Acceleration * Time.deltaTime * 0.5f);
+        Debug.Log("make red power ranger");
 
-        switch (CurrentShotTypes)
-        {
-            case 1:
-                {
-                    Mass = 2.0f;
-                    Velocity = new Vector3 (0.0f, 0.0f, 5.0f);
-                    Acceleration = new Vector3(0.0f, -1.0f, 0.0f);
-                    rb.AddForce(Gravity * Mass);
-                    transform.position += Velocity * Time.deltaTime + (Acceleration * Time.deltaTime * 0.5f);
-                    Debug.Log("make red power ranger");
-                    break;
-                }
-            case 2:
-                {
-                    Debug.Log("make blue power ranger");
-                    break;
-                }
-            case 3:
-                {
-                    Debug.Log("make green power ranger");
-                    break;
-                }
-            case 4:
-                {
-                    Debug.Log("make green power ranger");
-                    break;
-                }
-
-            case 5:
-                {
-                    Debug.Log("make green power ranger");
-                    break;
-                }
-
-            default:
-                break;
-        }
-
+        Vector3 resultingAcc = Acceleration;
+        resultingAcc.Scale(ForceAccum);
+        
+        
     }
 
     
 }
 
-public class AirSpace
+public class Partical
 {
-   
+    public Vector3 Acceleration;
+    public Vector3 Velocity;
+    public Vector3 ForceAccum;
+    public Vector3 Gravity;
+    public Rigidbody rb;
+    public float Mass;
+  
+
+
 }
