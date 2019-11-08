@@ -13,7 +13,7 @@ public class PhysicsEngineScript : MonoBehaviour
     public Vector3 Gravity;
     public Rigidbody rb;
     public float Mass;
-    
+    float Duration;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,13 @@ public class PhysicsEngineScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Duration > 0.0 )
+            {
 
+
+
+
+            }
         
         Gravity = new Vector3(0, -1, 0);
      
@@ -36,7 +42,7 @@ public class PhysicsEngineScript : MonoBehaviour
 
         Vector3 resultingAcc = Acceleration;
         resultingAcc.Scale(ForceAccum);
-        
+        rb.AddForce(ConstantForce);
         
     }
 
