@@ -24,7 +24,7 @@ public class PhysicsEngineScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        damping = 0.0f;
         InveseMass = 0.0f;
         Gravity = new Vector3(0, -1, 0);            
         Velocity = new Vector3 (0.0f, 0.0f, 0.0f);
@@ -37,7 +37,7 @@ public class PhysicsEngineScript : MonoBehaviour
         Velocity.Scale (resultingAcc * Time.deltaTime);
         Velocity *= (damping * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             InveseMass = 2.0f;
             Velocity = new Vector3(0.0f, 0.0f, 35.0f);
@@ -49,14 +49,12 @@ public class PhysicsEngineScript : MonoBehaviour
     
 }
 
-public class Partical
+public class Firework
 {
-    public Vector3 Acceleration;
-    public Vector3 Velocity;
-    public Vector3 ForceAccum;
-    public Vector3 Gravity;
-    public Rigidbody rb;
-    public float InveseMass;
+    public int MinAge;
+    public int MaxAge;
+    public Vector3 MinVelocity;
+    public Vector3 MaxVelocity;
   
 
 
