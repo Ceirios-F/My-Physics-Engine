@@ -30,12 +30,12 @@ public class PhysicsEngineScript : MonoBehaviour
         Velocity = new Vector3 (0.0f, 0.0f, 0.0f);
         Acceleration = new Vector3(0.0f, 0.0f, 0.0f);
         rb.AddForce(Gravity * InveseMass);
-        transform.position += Velocity * Time.deltaTime + (Acceleration * Time.deltaTime * 0.5f);
+        transform.position += Velocity * Time.time + (Acceleration * Time.time * 0.5f);
         //Debug.Log("make red power ranger");
         Vector3 resultingAcc = Acceleration;
         resultingAcc.Scale (ForceAccum * InveseMass);
-        Velocity.Scale (resultingAcc * Time.deltaTime);
-        Velocity *= (damping * Time.deltaTime);
+        Velocity.Scale (resultingAcc * Time.time);
+        Velocity *= (damping * Time.time);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -49,13 +49,25 @@ public class PhysicsEngineScript : MonoBehaviour
     
 }
 
-public class Firework
+public class Firework : PhysicsEngineScript
 {
+    public float Age;
     public int MinAge;
     public int MaxAge;
     public Vector3 MinVelocity;
     public Vector3 MaxVelocity;
-  
+
+    void Payload()
+    {
+        string Type = "";
+        int Count = 0;
+    }
+    public int PayloadCount;
+    void Update()
+    {
+        Age = (Age - Time.deltaTime);
+
+    }
 
 
 }
